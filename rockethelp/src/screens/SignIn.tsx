@@ -11,6 +11,7 @@ import { Input } from '../components/Input';
 // Importa a imagem svg para ser usado como um component
 import Logo from '../assets/logo_primary.svg';
 import { Envelope, Key } from 'phosphor-react-native';
+import { Button } from '../components/Button';
 
 export function SignIn() {
 
@@ -42,9 +43,9 @@ export function SignIn() {
             InputLeftElement={<Icon as={<Key color={colors.gray[300]} /> } ml={4} />}
             // Propriedade que oculta os caracteres digitados pelo usuário
             secureTextEntry
-
-            
             />
+
+            <Button title={"Entrar"} w="full" />
 
         </VStack>
     )
