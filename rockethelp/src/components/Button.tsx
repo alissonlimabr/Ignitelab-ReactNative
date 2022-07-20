@@ -1,14 +1,26 @@
 import { Button as ButtonNativeBase, IButtonProps, Heading} from 'native-base';
-// Define um tipo (props) e passa uma propriedade title
-type Props = {
+// Props recebe a união de tipos IButtonProps (estilização) +
+// propriedade title
+type Props = IButtonProps & {
     title: string;
 }
 
-// função que define o button do native-base resgata o {title}
-export function Button({title}:Props) {
+// Resgata o title e o restante das estilizações definidas no chamamento do component.
+export function Button({title, ... rest}:Props) {
   return (
-    <ButtonNativeBase>
-        <Heading>
+    // "rest..." Despeja as demais estilizações direamente no ButtonNativeBase.
+    // "_pressed" = ao pressionar, ativa as pseudoproperties definidas (muda a cor)
+    <ButtonNativeBase {...rest}
+      h={14}
+      bg="green.700"
+      fontSize="sm"
+      rounded="sm"
+      _pressed={{
+        bg: "green.500",
+      }}
+    >
+
+        <Heading color="white" fontSize="md">
             {title}
         </Heading>    
     </ButtonNativeBase>
