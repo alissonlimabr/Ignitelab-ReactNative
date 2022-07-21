@@ -5,10 +5,10 @@
 
 import { NativeBaseProvider, StatusBar } from 'native-base';
 import React from 'react';
-import { SignIn } from './src/screens/SignIn';
 import { THEME } from './src/styles/theme';
 import { useFonts, Roboto_400Regular, Roboto_700Bold } from '@expo-google-fonts/roboto';
 import { Loading } from './src/components/Loading';
+import { Home } from './src/screens/Home';
 
 export default function App() {
 
@@ -30,7 +30,7 @@ export default function App() {
       foram carregadas. Caso sim, executa o component, caso não,
       executa o Loading(carregamento da fonte) */}
       
-      { isfontsLoaded ? <SignIn /> : <Loading />}
+      { isfontsLoaded ? <Home /> : <Loading />}
 
   </NativeBaseProvider>
 
