@@ -6,6 +6,7 @@ import { FlatList, Heading, HStack, IconButton, Text, useTheme, VStack } from 'n
 import { SignOut } from 'phosphor-react-native';
 import Logo from '../assets/logo_primary.svg';
 import { Filter } from '../components/Filter';
+import { Orders, OrdersProps } from '../components/Orders';
 // importação para usar variáveis de estado no React. Com isso, as alterações
 // se refletem em tempo real na aplicação
 import { useState } from 'react';
@@ -18,7 +19,9 @@ export function Home() {
     const [statusSelected, setStatusSelected] = useState<'open' | 'closed'> ('open') 
 
     // estado que contém todas as solicitações
-    const [ orders, setOrders] = useState([{
+    // A mudaça de estado precisa importar a tipagem OrdersProps, do component Orders, para poder renderizar
+    // a lista de orders
+    const [ orders, setOrders] = useState<OrdersProps[]>([{
         id: '123',
         patrimony: '123456',
         when: '12/07/2002 às 10:00',
@@ -86,8 +89,9 @@ export function Home() {
         data={orders}
         // chave que será usada para identificar uma order. Pensando nisso, defini previamente um cmapo "id" no objeto (item) da listagem.
         keyExtractor={item => item.id}
-        // exibe(rendezira) o item 
-        renderItem={({item}) => <Text color="white"> {item.patrimony} </Text>}
+        // exibe(rendezira) o item
+        // Ele solicita deixar deixar a tipagem explícita no useState
+        renderItem={({item}) => <Orders data={item} />}
         />
         </VStack>
     </VStack>
